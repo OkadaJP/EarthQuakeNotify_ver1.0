@@ -4,11 +4,13 @@ const url =  "https://api.p2pquake.net/v2/history?codes=556";
 let message = "";
 let list = [];
 
+/* 2000ミリ秒ごとに実行 */
 setInterval(getMessage,2000);
 
+/* APIを利用して地震情報を取得 */
 async function getMessage(){
-    let response = await fetch(url);
-    let result = await response.json();
+    let response = await fetch(url).catch((err)=>{console.log(err)});
+    let result = await response.json().catch((err)=>{console.log(err)});
     message = result;
     
     await message.forEach(element => {
@@ -21,11 +23,11 @@ async function getMessage(){
             }).catch((err) => {
                 console.log(err);
             });
-            
         }
     });
 }
 
+/* 地震情報を元にメッセージを作成 */
 function createMessage(obj){
     console.log(obj.getTime + "に、");
     console.log(obj.getPlace+"県で");
