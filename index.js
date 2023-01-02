@@ -1,3 +1,7 @@
+/*
+    Main
+*/
+
 import  {earthquakeModel}  from "./earthquakeModel.js";
 
 const url =  "https://api.p2pquake.net/v2/history?codes=556";

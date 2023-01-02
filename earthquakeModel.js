@@ -1,3 +1,7 @@
+/*
+    地震情報のModel
+*/
+
 export class earthquakeModel{
     constructor(id,level,place,time){
         this.id = id;
