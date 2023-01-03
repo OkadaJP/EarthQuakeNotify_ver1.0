@@ -8,11 +8,10 @@ const url =  "https://api.p2pquake.net/v2/history?codes=556";
 let message = "";
 let list = [];
 
-/* 2000ミリ秒ごとに実行 */
-setInterval(getMessage,2000);
+class getData{
 
 /* APIを利用して地震情報を取得 */
-async function getMessage(){
+async getMessage(){
     let response = await fetch(url).catch((err)=>{console.log(err)});
     let result = await response.json().catch((err)=>{console.log(err)});
     message = result;
@@ -32,13 +31,15 @@ async function getMessage(){
 }
 
 /* 地震情報を元にメッセージを作成 */
-function createMessage(obj){
+ createMessage(obj){
     console.log(obj.getTime + "に、");
     console.log(obj.getPlace+"県で");
     console.log(obj.getLevel + "の地震が発生しました。");
 }
-
-async function convertScale(num){
+/*
+    震度を日本語表記に変換する
+*/
+async convertScale(num){
     switch(num){
         case 10:
         return "震度１";
@@ -62,3 +63,6 @@ async function convertScale(num){
         return "震度不明";
     }
 }
+}
+
+export {getMessage};

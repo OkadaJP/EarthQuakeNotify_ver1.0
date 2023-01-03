@@ -1,9 +1,13 @@
 /*
-    Slackでの送受信を担当する
+    Slackでの送受信を担当する（メインクラス）
 */
 
 import pkg from '@slack/bolt';
+import { getMessage } from './getMessage';
 const { App } = pkg;
+
+/* 2000ミリ秒ごとに実行 */
+setInterval(getMessage,2000);
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -27,3 +31,4 @@ const app = new App({
   
     console.log('⚡️ Bolt app is running!');
   })();
+
